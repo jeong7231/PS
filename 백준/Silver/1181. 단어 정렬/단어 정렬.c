@@ -2,37 +2,51 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define SIZE 51
+typedef struct
+{
+    char word[60];
+} book;
 
-int compare(const void *arg1, const void *arg2);
+int compare(const void *a, const void *b);
 
 int main(void)
 {
-    int num, length = 51;
-
-    char arr[20000][SIZE] = {0};
-
+    int num;
     scanf("%d", &num);
 
-    for (int i = 0; i < num; i++)
-        scanf("%s", arr[i]);
-
-    qsort(arr, num, sizeof(arr[0]), compare);
+    book N[20000];
 
     for (int i = 0; i < num; i++)
     {
-        if (strcmp(arr[i], arr[i + 1]) != 0 || i == num - 1)
-            printf("%s\n", arr[i]);
+        scanf("%s", N[i].word);
+    }
+
+    
+    qsort(N, num, sizeof(book), compare);
+
+    
+    printf("%s\n", N[0].word); 
+    for (int i = 1; i < num; i++)
+    {
+        if (strcmp(N[i].word, N[i - 1].word) != 0)
+        {
+            printf("%s\n", N[i].word);
+        }
     }
 
     return 0;
 }
-int compare(const void *arg1, const void *arg2)
+
+int compare(const void *a, const void *b)
 {
-    if (strlen((const char *)arg1) > strlen((const char *)arg2))
-        return 1;
-    else if (strlen((const char *)arg1) < strlen((const char *)arg2))
-        return -1;
-    else
-        return strcmp((char *)arg1, (char *)arg2);
-} 
+    const book *bookA = (const book *)a;
+    const book *bookB = (const book *)b;
+
+    int lenA = strlen(bookA->word);
+    int lenB = strlen(bookB->word);
+
+    if (lenA != lenB)
+        return lenA - lenB; 
+
+    return strcmp(bookA->word, bookB->word); 
+}
