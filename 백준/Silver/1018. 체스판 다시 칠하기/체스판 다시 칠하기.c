@@ -23,34 +23,36 @@ int main(void)
     {
         for (int x = 0; x <= m - 8; x++)
         {
-            int repair_w = 0, repair_b = 0;
+            
+            int repair_w = 0; 
+            int repair_b = 0; 
             
             for (int i = 0; i < 8; i++)
             {
                 for (int j = 0; j < 8; j++)
                 {
-                    char current = board[y + i][x + j];
+                    char current = board[y + i][x + j]; 
 
-                    if ((i + j) % 2 == 0)
+                    if ((i + j) % 2 == 0) 
                     {
-                        if (current != 'W')
+                        if (current != 'W') 
                         {
-                            repair_w++;
+                            repair_w++; 
                         }
-                        if (current != 'B')
+                        if (current != 'B') 
                         {
-                            repair_b++;
+                            repair_b++; 
                         }
                     }
-                    else
+                    else 
                     {
-                        if (current != 'W')
+                        if (current != 'B') 
                         {
-                            repair_b++;
+                            repair_w++; 
                         }
-                        if (current != 'B')
+                        if (current != 'W') 
                         {
-                            repair_w++;
+                            repair_b++; 
                         }
                     }
                 }
