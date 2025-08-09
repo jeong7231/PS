@@ -26,7 +26,7 @@ int main()
 
         if (k < 0)
         {
-            int temp = (-k) % (int)dq.size();
+            int temp = (-k) % dq.size();
             for (int i = 0; i < temp; i++)
             {
                 dq.push_front(dq.back());
@@ -35,7 +35,7 @@ int main()
         }
         else if (k > 0)
         {
-            int temp = (k - 1) % (int)dq.size();
+            int temp = (k - 1) % dq.size();
             for (int i = 0; i < temp; i++)
             {
                 dq.push_back(dq.front());
